@@ -20,7 +20,7 @@ class ExternalContentPortfolioPlugin{
 
         $CptSubmissionListener = new CptSubmissionListener();
         if($CptSubmissionListener->isFormSubmitted()) {
-            add_action('init', array(new CptSubmissionListener, 'listenForFormSubmission'));
+            //add_action('init', array(new CptSubmissionListener, '';[]''));
         }
     }
 }

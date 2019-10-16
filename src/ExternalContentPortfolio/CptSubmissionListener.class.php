@@ -17,13 +17,29 @@ class CptSubmissionListener{
         }
     }
 
+    /**
+     *  returns bool;
+     */
+    public function checkWordPressAuth(){
+        if( \current_user_can('edit_others_posts')){
+            //die('authorized');
+            return TRUE;
+        }else{
+            die('Something is wrong. not authorized');
+            //return FALSE;
+        }
+    }
+
     public function isFormSubmitted() {
         if (
             //die("isFormSubmitted!");
+           // ($this->userIsAuthorized()) or
             (isset($_POST['add-this-url'])) or
             (isset($_GET['external-content-rescan'])) or
             (isset($_GET['external-content-rescan']))
         ) {
+            add_action('init', array ($this, "checkWordPressAuth"));
+            //however wordpress auth still needs to run ^^
             return TRUE;
         } else {
             return FALSE;
